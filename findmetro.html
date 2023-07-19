@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>| Nagpur Metro TimeTable</title>
+    <script src="./databaseLine1.min.js"></script>
+    <script src="./databaseLine2.min.js"></script>
+    <link rel="stylesheet" href="./style.css">
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="filters">☶&nbsp;
+        <select id="showMetroFilter">
+            <option selected value="next2hr">Show Metros in next 1 hours</option>
+            <option value="allup">Show all upcoming Metros</option>
+            <option value="all">Show all Metros</option>
+        </select>
+        <!-- <span style="font-size: 12px;">(Number of results: <span id="noofresults" style="font-size: 12px;"></span>)</span>  -->
+    </div>
+    <div id="fromTo">
+        <!-- <button onclick="window.history.back()">🔙</button> -->
+        <!-- <div class="onePathJourney">
+            <h3>Showing Metros<br>from <u><span class="fromText"></span> to <span class="toText"></span></u>.</h3>
+        </div> -->
+        <div class="breakJourney">
+            <p style="text-align: center;">🔴 You need to Change your metro at <b><span
+                        class="intersectionText"></span></b> to complete your journey.</p>
+            <!-- <p style="text-align: center;"><b><span class="fromText"></span> → <span class="intersectionText"></span> 🔁
+                <span class="intersectionText"></span> → <span class="toText"></span>.</b> </p> -->
+        </div>
+    </div>
+
+    <div class="showMetros">
+    </div>
+    <template>
+        <div class="main_container">
+            <div class="trainInfo"><span class="tN"></span><span class="src"></span>→<span class="dst"></span>
+                <!-- <a href="#" class="link">View ▷</a> -->
+            </div>
+            <div class="time"><span class="timeEmoji">🕒</span><span class="jST"></span> - <span
+                    class="jET">06:10</span><span class="totalDur"></span></div>
+        </div>
+    </template>
+    <script src="./app.js" defer></script>
+</body>
+
+</html>

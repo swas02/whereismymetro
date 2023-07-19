@@ -1,0 +1,136 @@
+* {
+  color: #444;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 16px;
+}
+table,
+td,
+tr,
+th {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 10px;
+}
+table {
+  width: 100%;
+  align-content: center;
+  text-align: center;
+  margin: 20px 0;
+}
+body {
+  align-items: center;
+  margin: auto;
+  background-color: #ededed;
+}
+.select2,
+input[type="submit"] {
+  margin: auto !important;
+  width: 100% !important;
+}
+.margin-10 {
+  margin: 10px !important;
+  border: 0px;
+}
+input[type="submit"] {
+  background-color: #ffb120;
+  border: 0px;
+  color: #fff;
+  font-weight: 500;
+  height: 30px;
+  border-radius: 5px;
+}
+form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+/* #fromTo{
+  display: flex;
+  justify-content: center;
+  margin: auto;
+} */
+button {
+  border: none;
+  margin: 0 10px 0 0;
+}
+.filters {
+  /* text-align: center; */
+  padding: 10px 20px 5px 20px;
+  background-color: #ffb120;
+}
+
+body {
+  padding: 0;
+}
+
+.main_container {
+  background-color: white;
+  padding: 10px;
+  /* border-radius: 5px; */
+  margin: 1px auto;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.tN {
+  background-color: #ffb120;
+  padding: 2px 10px;
+  border-radius: 3px;
+}
+
+.src,
+.dst,
+.jET,
+.timeEmoji,
+.jST {
+  padding: 3px 10px;
+}
+
+.time,
+.trainInfo {
+  margin: 3px 5px;
+  padding: 10px;
+}
+
+.time {
+  background-color: aqua;
+  border-radius: 5px;
+}
+
+.totalDur {
+  float: right;
+}
+
+.link {
+  float: right;
+  text-decoration: none;
+  color: blue;
+}
+
+#fromTo {
+  padding: 0.1px 20px;
+  background-color: #ffb120;
+}
+
+#showMetroFilter {
+  background-color: #ffb120;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+/* .src,.dst {
+  font-weight: 600;
+} */
+
+.interchange {
+  display: flex;
+  justify-content: stretch;
+}
+
+.metro {
+  text-align: center;
+  background-color: aqua;
+  margin: 0;
+  padding: 10px;
+}
