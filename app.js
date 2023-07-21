@@ -9,7 +9,7 @@ const line_1 = [
   "Nari_Road",
   "Kadvi_Chowk",
   "Gaddi_Godam_square",
-  "Kasturchand_Park",
+  "Kasturchand_Park_LIC",
   "Zero_Miles",
   "Sitabuldi",
   "Congress_Nagar",
@@ -93,6 +93,8 @@ const findSuitableTrains = (source, destination) => {
     alert("Error! Please Search Metro Again.");
     document.location.href = "./index.html";
   }
+
+  stationChangeNotification();
   return trains;
 };
 
@@ -130,14 +132,19 @@ document
 document
   .querySelectorAll(".toText")
   .forEach((e) => (e.innerText = to.replaceAll("_", " ")));
-if (isIntersection) {
-  document
-    .querySelectorAll(".intersectionText")
-    .forEach((e) => (e.innerText = intersection.replaceAll("_", " ")));
-} else {
-  document.querySelector(".breakJourney").remove();
-}
 
+function stationChangeNotification() {
+  if (isIntersection) {
+    document
+      .querySelectorAll(".intersectionText")
+      .forEach((e) => (e.innerText = intersection.replaceAll("_", " ")));
+    if (document.querySelectorAll(".breakJourney").length)
+      document.querySelector(".breakJourney").style.display = "block";
+  } else {
+    if (document.querySelectorAll(".breakJourney").length)
+      document.querySelector(".breakJourney").remove();
+  }
+}
 document.querySelector("#showMetroFilter").addEventListener("change", (e) => {
   generateResults();
 });
@@ -161,6 +168,7 @@ function generateResults(arr) {
     default:
       break;
   }
+
   if (arr.length) generateCard(arr);
   else document.querySelector(".showMetros").innerText = msg;
   setTimeout(() => {
@@ -175,7 +183,7 @@ function generateCard(arr) {
   let path = arr[0].p;
 
   function fromTo(a, i) {
-    if (a[i].p != a[a.length - 1].p) {
+    // if (a[i].p != a[a.length - 1].p) {
       let html = document.createElement("div");
       html.className = "metro";
       html.innerText =
@@ -184,21 +192,34 @@ function generateCard(arr) {
         a[i].dst.replaceAll("_", " ") +
         "🔁";
       document.querySelector(".showMetros").append(html);
-    }
+    // }
   }
 
   fromTo(arr, "0");
 
   let temp = document.querySelector("template").content;
   arr.forEach((e, i) => {
+
     if (e.p != path) {
       path = e.p;
       let html = document.createElement("div");
       html.className = "metro";
       html.innerText =
         e.src.replaceAll("_", " ") + "🔁" + " →  " + e.dst.replaceAll("_", " ");
+      html.id = "scroll";
       document.querySelector(".showMetros").append(html);
+      let navigate = document.createElement("div");
+      navigate.id = "scrollHere";
+      document.querySelector(".showMetros").append(navigate);
+
+      document.getElementById("scroll").addEventListener("click", () => {
+        document
+          .querySelector("#scrollHere")
+          .scrollIntoView({ behavior: "smooth" });
+        console.log("hi");
+      });
     }
+
     var copyHTML = document.importNode(temp, true);
     copyHTML.querySelector(".tN").innerText = e.tN.split("_")[1];
     copyHTML.querySelector(".src").innerText = e.src.replaceAll("_", " ");
@@ -206,10 +227,15 @@ function generateCard(arr) {
     copyHTML.querySelector(".jST").innerText = e.jST.slice(0, -3);
     copyHTML.querySelector(".jET").innerText = e.jET.slice(0, -3);
     copyHTML.querySelector(".totalDur").innerText =
-      parseInt(
+      Math.round(
         (parseFloat(toSeconds(e.jET)) - parseFloat(toSeconds(e.jST))) / 60
       ) + " Mins";
-
+    if (parseInt(toSeconds(e.jST)) <= parseInt(toSeconds(currtime))) {
+      copyHTML.querySelector(".main_container").classList.add("departed");
+    }
+    else if(parseInt(toSeconds(e.jST)) <= parseInt(toSeconds(currtime))- -1 * parseInt(toSeconds("00:15:00"))){
+      copyHTML.querySelector(".main_container").classList.add('ucm')
+    }
     document.querySelector(".showMetros").append(copyHTML);
   });
 }
@@ -221,6 +247,7 @@ function toSeconds(a) {
   }
   return time[0] * 3600 - -1 * time[1] * 60 - -1 * time[2];
 }
+
 let currtime, allTrains, upcomingTrains, trainInNext1hr;
 function init() {
   currtime = new Date().toLocaleTimeString("en-US", { hour12: false });
@@ -230,10 +257,9 @@ function init() {
     return parseInt(toSeconds(train.jST)) >= parseInt(toSeconds(currtime));
   });
   trainInNext1hr = [];
-  trainInNext1hr = upcomingTrains.filter((train) => {
+  trainInNext1hr = allTrains[0].filter((train) => {
     return (
-      parseInt(toSeconds(train.jST)) <
-      parseInt(toSeconds(currtime)) - -1 * parseInt(toSeconds("01:00:00"))
+      parseInt(toSeconds(train.jST)) <= parseInt(toSeconds(currtime)) - -1 * parseInt(toSeconds("01:00:00")) && parseInt(toSeconds(train.jET)) >= parseInt(toSeconds(currtime)) - -1 * parseInt(toSeconds("00:00:15"))
     );
   });
   generateResults();
@@ -241,5 +267,5 @@ function init() {
 init();
 setInterval(() => {
   init();
-  console.log("hello");
+  console.log("refresh");
 }, 15000);

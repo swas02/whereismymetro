@@ -3,6 +3,9 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 16px;
 }
+button{
+  background-color: rgba(0, 0, 0, 0);
+}
 table,
 td,
 tr,
@@ -94,7 +97,7 @@ body {
 }
 
 .time {
-  background-color: aqua;
+  background-color: #8CFFDB;
   border-radius: 5px;
 }
 
@@ -102,10 +105,9 @@ body {
   float: right;
 }
 
-.link {
+.status {
   float: right;
   text-decoration: none;
-  color: blue;
 }
 
 #fromTo {
@@ -130,7 +132,69 @@ body {
 
 .metro {
   text-align: center;
-  background-color: aqua;
+  background-color: #ffb120;
+  /* border-top:  3px solid;
+  border-bottom: 3px solid; */
   margin: 0;
+  font-weight: 600;
   padding: 10px;
+  position: sticky;
+  bottom: 0;
+  top: 0;
+}
+.blink {
+  animation: blink 2s linear infinite;
+}
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.ucm {
+  /* background-color: #98FB98; */
+  color: white;
+}
+.ucm .timeEmoji {
+  animation: blink 2s infinite;
+}
+@keyframes backgroundBlink {
+  0% {
+    background-color: #8CFFDB;
+  }
+  50% {
+    background-color: #fff;
+  }
+  100% {
+    background-color: #8CFFDB;
+  }
+}
+
+.breakJourney {
+  display: none;
+}
+
+.departed .tN,
+.departed .time,
+.departed .status {
+  background-color: #f6f6f6;
+  color: #9d9d9d;
+}
+
+.departed .trainInfo,
+.departed .src,
+.departed .dst,
+.departed .jET,
+.departed .jST,
+.departed .totalDur {
+  color: #9d9d9d !important;
+}
+.departed .timeEmoji{
+  opacity: 0.4;
 }

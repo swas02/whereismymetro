@@ -14,7 +14,11 @@
 </head>
 
 <body>
-    <div class="filters">☶&nbsp;
+
+
+
+    <div class="filters">
+        <button onclick="window.history.back()"> ☶ </button>
         <select id="showMetroFilter">
             <option selected value="next2hr">Show Metros in next 1 hours</option>
             <option value="allup">Show all upcoming Metros</option>
@@ -28,7 +32,7 @@
             <h3>Showing Metros<br>from <u><span class="fromText"></span> to <span class="toText"></span></u>.</h3>
         </div> -->
         <div class="breakJourney">
-            <p style="text-align: center;">🔴 You need to Change your metro at <b><span
+            <p style="text-align: center;"><span class="blink"> 🔴 </span>You need to Change your metro at <b><span
                         class="intersectionText"></span></b> to complete your journey.</p>
             <!-- <p style="text-align: center;"><b><span class="fromText"></span> → <span class="intersectionText"></span> 🔁
                 <span class="intersectionText"></span> → <span class="toText"></span>.</b> </p> -->
@@ -43,7 +47,7 @@
                 <!-- <a href="#" class="link">View ▷</a> -->
             </div>
             <div class="time"><span class="timeEmoji">🕒</span><span class="jST"></span> - <span
-                    class="jET">06:10</span><span class="totalDur"></span></div>
+                    class="jET"></span><span class="totalDur"></span></div>
         </div>
     </template>
     <script src="./app.js" defer></script>
